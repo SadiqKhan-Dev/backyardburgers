@@ -1,13 +1,20 @@
+import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import {
   ChefHat, User, Beef, Flame, Heart, Zap,
   PartyPopper, Users, ClipboardList, Laptop,
   Trophy, Star, Rocket, Gem, Calendar, Target,
-  CircleUser
+  CircleUser, ArrowRight, MapPin, Award, BookOpen
 } from 'lucide-react';
 import Footer from '../components/Footer';
 
 function About() {
+  const [isVisible, setIsVisible] = useState(false);
+
+  useEffect(() => {
+    setIsVisible(true);
+  }, []);
+
   const team = [
     {
       name: 'Chef Marcus Williams',
@@ -114,60 +121,164 @@ function About() {
 
   return (
     <div className="min-h-screen bg-white dark:bg-gray-900">
-      {/* Hero Section */}
-      <section className="bg-gradient-to-br from-primary-700 to-accent-600 text-white py-24">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <div className="flex justify-center mb-6">
-            <div className="bg-white/20 p-4 rounded-full">
-              <Beef className="w-16 h-16 text-white" />
-            </div>
+      {/* Hero Section with Background Image */}
+      <section className="relative overflow-hidden py-24 md:py-32">
+        {/* Background Image */}
+        <div className="absolute inset-0">
+          <img
+            src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=1920&h=800&fit=crop"
+            alt="Backyard Burgers restaurant"
+            className="w-full h-full object-cover"
+          />
+          <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/60 to-black/80" />
+        </div>
+
+        {/* Decorative Elements */}
+        <div className="absolute top-10 left-10 opacity-20 animate-pulse">
+          <Flame className="w-16 h-16 text-orange-500" />
+        </div>
+        <div className="absolute bottom-10 right-10 opacity-20 animate-pulse" style={{ animationDelay: '1s' }}>
+          <Beef className="w-16 h-16 text-red-500" />
+        </div>
+
+        {/* Content */}
+        <div className={`relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
+          {/* Badge */}
+          <div className="inline-flex items-center space-x-2 bg-white/10 backdrop-blur-md text-white px-6 py-3 rounded-full text-sm font-semibold mb-8 border border-white/20">
+            <Award className="w-5 h-5 text-yellow-400" />
+            <span>Voted #1 Burger Spot 2025</span>
           </div>
-          <h1 className="text-5xl md:text-6xl font-bold mb-6 font-display">
-            Our Story
-          </h1>
-          <p className="text-2xl mb-8 max-w-3xl mx-auto leading-relaxed">
+
+          {/* Main Heading */}
+          <div className="flex items-center justify-center mb-6 space-x-4">
+            <div className="bg-gradient-to-br from-orange-500 to-red-600 p-4 rounded-2xl shadow-2xl">
+              <Flame className="w-12 h-12 md:w-16 md:h-16 text-white" />
+            </div>
+            <h1 className="text-5xl md:text-7xl font-bold text-white font-display drop-shadow-2xl">
+              Our Story
+            </h1>
+          </div>
+
+          {/* Subtitle */}
+          <p className="text-2xl md:text-3xl mb-8 max-w-3xl mx-auto leading-relaxed text-white/95 font-light drop-shadow-xl">
             From a small backyard grill to your favorite burger destination
           </p>
-          <p className="text-lg max-w-4xl mx-auto leading-relaxed opacity-90">
+
+          {/* Description */}
+          <p className="text-lg md:text-xl max-w-4xl mx-auto leading-relaxed text-white/85 mb-12">
             What started as a passion for flame-grilled perfection has grown into a beloved local institution.
             At Backyard Burgers, we believe every meal should be an experience worth remembering.
           </p>
+
+          {/* Stats Row */}
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-4xl mx-auto">
+            <div className="bg-white/10 backdrop-blur-md rounded-xl p-4 border border-white/20">
+              <MapPin className="w-6 h-6 mx-auto mb-2 text-orange-400" />
+              <p className="text-2xl font-bold text-white">Est. 2020</p>
+              <p className="text-xs text-white/70">Founded With Love</p>
+            </div>
+            <div className="bg-white/10 backdrop-blur-md rounded-xl p-4 border border-white/20">
+              <ChefHat className="w-6 h-6 mx-auto mb-2 text-yellow-400" />
+              <p className="text-2xl font-bold text-white">15+</p>
+              <p className="text-xs text-white/70">Expert Chefs</p>
+            </div>
+            <div className="bg-white/10 backdrop-blur-md rounded-xl p-4 border border-white/20">
+              <Star className="w-6 h-6 mx-auto mb-2 text-yellow-400" />
+              <p className="text-2xl font-bold text-white">4.8</p>
+              <p className="text-xs text-white/70">Average Rating</p>
+            </div>
+            <div className="bg-white/10 backdrop-blur-md rounded-xl p-4 border border-white/20">
+              <Trophy className="w-6 h-6 mx-auto mb-2 text-yellow-400" />
+              <p className="text-2xl font-bold text-white">50K+</p>
+              <p className="text-xs text-white/70">Happy Customers</p>
+            </div>
+          </div>
+
+          {/* Scroll Indicator */}
+          <div className="mt-16 animate-bounce">
+            <ArrowRight className="w-8 h-8 mx-auto text-white/60 rotate-90" />
+          </div>
         </div>
       </section>
 
       {/* Our Values */}
-      <section className="py-20 bg-gray-50 dark:bg-gray-800">
+      <section className="py-24 bg-gradient-to-b from-white to-gray-50 dark:from-gray-800 dark:to-gray-900">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <div className="inline-flex items-center space-x-2 bg-primary-100 dark:bg-primary-900/30 text-primary-700 dark:text-primary-300 px-5 py-2 rounded-full text-sm font-semibold mb-6">
+            <div className="inline-flex items-center space-x-2 bg-red-100 dark:bg-red-900/30 text-red-700 dark:text-red-300 px-5 py-2 rounded-full text-sm font-semibold mb-6">
               <Gem className="w-4 h-4" />
-              <span>Our Values</span>
+              <span>Our Core Values</span>
             </div>
-            <h2 className="text-4xl font-bold text-gray-900 dark:text-white mb-4 font-display">
+            <h2 className="text-5xl font-bold text-gray-900 dark:text-white mb-4 font-display">
               What Makes Us Special
             </h2>
-            <p className="text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
+            <p className="text-xl text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
               Our commitment to excellence in every bite
             </p>
           </div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {values.map((value, index) => {
+            {[
+              {
+                icon: Beef,
+                title: 'Quality First',
+                description: 'We source only the freshest, premium ingredients from local suppliers',
+                color: 'from-red-500 to-red-600',
+                image: 'https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=400&h=300&fit=crop',
+              },
+              {
+                icon: Flame,
+                title: 'Flame-Grilled',
+                description: 'Every burger is flame-grilled to order for that authentic backyard taste',
+                color: 'from-orange-500 to-orange-600',
+                image: 'https://images.unsplash.com/photo-1553979459-d2229ba7433b?w=400&h=300&fit=crop',
+              },
+              {
+                icon: Heart,
+                title: 'Made with Love',
+                description: 'Each dish is crafted with passion and attention to detail',
+                color: 'from-pink-500 to-pink-600',
+                image: 'https://images.unsplash.com/photo-1551782450-17144efb5773?w=400&h=300&fit=crop',
+              },
+              {
+                icon: Zap,
+                title: 'Fast Service',
+                description: 'Quick preparation without compromising on quality',
+                color: 'from-yellow-500 to-yellow-600',
+                image: 'https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=400&h=300&fit=crop',
+              },
+            ].map((value, index) => {
               const Icon = value.icon;
               return (
                 <div
                   key={index}
-                  className="bg-white dark:bg-gray-700 rounded-2xl p-8 shadow-lg hover:shadow-2xl transform hover:scale-105 transition-all duration-300"
+                  className="group bg-white dark:bg-gray-700 rounded-2xl overflow-hidden shadow-xl hover:shadow-2xl transform hover:-translate-y-3 transition-all duration-500 border border-gray-100 dark:border-gray-600"
                 >
-                  <div className={`bg-gradient-to-br ${value.color} w-20 h-20 rounded-full flex items-center justify-center mb-6 mx-auto shadow-xl`}>
-                    <Icon className="w-10 h-10 text-white" />
+                  {/* Image Section */}
+                  <div className="relative h-48 overflow-hidden">
+                    <img
+                      src={value.image}
+                      alt={value.title}
+                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                      loading="lazy"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
+                    
+                    {/* Icon Badge */}
+                    <div className={`absolute top-4 right-4 bg-gradient-to-br ${value.color} p-3 rounded-full shadow-xl transform group-hover:scale-110 transition-transform duration-300`}>
+                      <Icon className="w-6 h-6 text-white" />
+                    </div>
                   </div>
-                  <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-3 text-center font-display">
-                    {value.title}
-                  </h3>
-                  <p className="text-gray-600 dark:text-gray-300 text-center leading-relaxed">
-                    {value.description}
-                  </p>
+
+                  {/* Content */}
+                  <div className="p-6">
+                    <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-3 text-center font-display">
+                      {value.title}
+                    </h3>
+                    <p className="text-gray-600 dark:text-gray-300 text-center leading-relaxed">
+                      {value.description}
+                    </p>
+                  </div>
                 </div>
               );
             })}
@@ -176,27 +287,35 @@ function About() {
       </section>
 
       {/* Our Story Timeline */}
-      <section className="py-20 bg-white dark:bg-gray-900">
-        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <div className="inline-flex items-center space-x-2 bg-accent-100 dark:bg-accent-900/30 text-accent-700 dark:text-accent-300 px-5 py-2 rounded-full text-sm font-semibold mb-6">
-              <Calendar className="w-4 h-4" />
+      <section className="py-24 bg-white dark:bg-gray-900">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-20">
+            <div className="inline-flex items-center space-x-2 bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 px-5 py-2 rounded-full text-sm font-semibold mb-6">
+              <BookOpen className="w-4 h-4" />
               <span>Our Journey</span>
             </div>
-            <h2 className="text-4xl font-bold text-gray-900 dark:text-white mb-4 font-display">
-              Our Journey
+            <h2 className="text-5xl font-bold text-gray-900 dark:text-white mb-4 font-display">
+              Milestones That Shaped Us
             </h2>
-            <p className="text-lg text-gray-600 dark:text-gray-400">
+            <p className="text-xl text-gray-600 dark:text-gray-400">
               The milestones that shaped Backyard Burgers
             </p>
           </div>
 
           <div className="relative">
             {/* Timeline Line */}
-            <div className="absolute left-1/2 transform -translate-x-1/2 w-1 h-full bg-gradient-to-b from-primary-600 to-accent-600"></div>
+            <div className="absolute left-1/2 transform -translate-x-1/2 w-1 h-full bg-gradient-to-b from-orange-500 via-red-500 to-pink-500 rounded-full"></div>
 
-            <div className="space-y-12">
-              {milestones.map((milestone, index) => {
+            <div className="space-y-16">
+              {[
+                { year: '2020', event: 'Backyard Burgers founded', icon: PartyPopper, image: 'https://images.unsplash.com/photo-1466978913421-dad2ebd01d17?w=400&h=300&fit=crop' },
+                { year: '2021', event: 'Reached 1,000 happy customers', icon: Users, image: 'https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=400&h=300&fit=crop' },
+                { year: '2022', event: 'Expanded menu to 40+ items', icon: ClipboardList, image: 'https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=400&h=300&fit=crop' },
+                { year: '2023', event: 'Launched online ordering system', icon: Laptop, image: 'https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=400&h=300&fit=crop' },
+                { year: '2024', event: '10,000+ orders completed', icon: Trophy, image: 'https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=400&h=300&fit=crop' },
+                { year: '2025', event: 'Voted #1 Burger Spot in the city', icon: Star, image: 'https://images.unsplash.com/photo-1553979459-d2229ba7433b?w=400&h=300&fit=crop' },
+                { year: '2026', event: 'Continuing to serve excellence', icon: Rocket, image: 'https://images.unsplash.com/photo-1594212699903-ec8a3eca50f5?w=400&h=300&fit=crop' },
+              ].map((milestone, index) => {
                 const Icon = milestone.icon;
                 return (
                   <div
@@ -206,22 +325,38 @@ function About() {
                     }`}
                   >
                     <div className={`w-5/12 ${index % 2 === 0 ? 'text-right' : 'text-left'}`}>
-                      <div className="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-lg hover:shadow-2xl transition-shadow">
-                        <div className="bg-gradient-to-br from-primary-500 to-accent-500 w-16 h-16 rounded-xl flex items-center justify-center mx-auto mb-3">
-                          <Icon className="w-8 h-8 text-white" />
+                      <div className="group bg-white dark:bg-gray-800 rounded-2xl overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 border border-gray-100 dark:border-gray-700">
+                        {/* Image */}
+                        <div className="relative h-40 overflow-hidden">
+                          <img
+                            src={milestone.image}
+                            alt={milestone.event}
+                            className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                            loading="lazy"
+                          />
+                          <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
+                          
+                          {/* Icon Badge */}
+                          <div className="absolute top-3 right-3 bg-gradient-to-br from-orange-500 to-red-600 p-3 rounded-full shadow-xl transform group-hover:scale-110 transition-transform duration-300">
+                            <Icon className="w-5 h-5 text-white" />
+                          </div>
                         </div>
-                        <p className="text-2xl font-bold text-primary-600 dark:text-primary-500 mb-2 font-display">
-                          {milestone.year}
-                        </p>
-                        <p className="text-gray-700 dark:text-gray-300 font-semibold">
-                          {milestone.event}
-                        </p>
+
+                        {/* Content */}
+                        <div className="p-6">
+                          <p className="text-3xl font-bold text-transparent bg-gradient-to-r from-orange-500 to-red-600 bg-clip-text mb-2 font-display">
+                            {milestone.year}
+                          </p>
+                          <p className="text-gray-800 dark:text-gray-200 font-semibold text-lg">
+                            {milestone.event}
+                          </p>
+                        </div>
                       </div>
                     </div>
 
                     {/* Timeline Dot */}
                     <div className="relative z-10 w-2/12 flex justify-center">
-                      <div className="w-6 h-6 bg-primary-600 rounded-full border-4 border-white dark:border-gray-900 shadow-lg"></div>
+                      <div className="w-6 h-6 bg-gradient-to-r from-orange-500 to-red-600 rounded-full border-4 border-white dark:border-gray-900 shadow-xl animate-pulse"></div>
                     </div>
 
                     <div className="w-5/12"></div>
@@ -313,67 +448,96 @@ function About() {
       </section>
 
       {/* Fun Facts */}
-      <section className="py-20 bg-gradient-to-br from-primary-600 to-accent-600 text-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="relative py-24 overflow-hidden">
+        {/* Background Image */}
+        <div className="absolute inset-0">
+          <img
+            src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=1920&h=600&fit=crop"
+            alt="Background"
+            className="w-full h-full object-cover"
+          />
+          <div className="absolute inset-0 bg-gradient-to-r from-orange-600/95 via-red-600/95 to-pink-600/95" />
+        </div>
+
+        {/* Content */}
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <div className="inline-flex items-center space-x-2 bg-white/20 text-white px-5 py-2 rounded-full text-sm font-semibold mb-6">
+            <div className="inline-flex items-center space-x-2 bg-white/20 backdrop-blur-md text-white px-5 py-2 rounded-full text-sm font-semibold mb-6 border border-white/30">
               <Target className="w-4 h-4" />
               <span>Fun Facts</span>
             </div>
-            <h2 className="text-4xl font-bold mb-4 font-display">
+            <h2 className="text-5xl font-bold text-white mb-4 font-display drop-shadow-2xl">
               Numbers That Tell Our Story
             </h2>
-            <p className="text-xl text-gray-100 max-w-2xl mx-auto">
+            <p className="text-xl text-white/90 max-w-2xl mx-auto">
               Our impact in numbers
             </p>
           </div>
 
-          <div className="grid md:grid-cols-4 gap-8">
-            <div className="text-center">
-              <p className="text-6xl font-bold mb-4">50K+</p>
-              <p className="text-lg opacity-90">Burgers Served</p>
-            </div>
-            <div className="text-center">
-              <p className="text-6xl font-bold mb-4">1,200+</p>
-              <p className="text-lg opacity-90">Lbs of Beef Weekly</p>
-            </div>
-            <div className="text-center">
-              <p className="text-6xl font-bold mb-4">98%</p>
-              <p className="text-lg opacity-90">Customer Satisfaction</p>
-            </div>
-            <div className="text-center">
-              <p className="text-6xl font-bold mb-4">15 min</p>
-              <p className="text-lg opacity-90">Average Prep Time</p>
-            </div>
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+            {[
+              { value: '50K+', label: 'Burgers Served', icon: '🍔' },
+              { value: '1,200+', label: 'Lbs of Beef Weekly', icon: '🥩' },
+              { value: '98%', label: 'Customer Satisfaction', icon: '⭐' },
+              { value: '15 min', label: 'Average Prep Time', icon: '⏱️' },
+            ].map((stat, index) => (
+              <div
+                key={index}
+                className="group bg-white/10 backdrop-blur-md rounded-2xl p-8 border border-white/20 hover:bg-white/20 transition-all duration-500 transform hover:-translate-y-3 shadow-xl hover:shadow-2xl"
+              >
+                <div className="text-5xl mb-4 transform group-hover:scale-125 transition-transform duration-300">
+                  {stat.icon}
+                </div>
+                <p className="text-5xl font-bold text-white mb-3 drop-shadow-lg">
+                  {stat.value}
+                </p>
+                <p className="text-lg text-white/85 font-medium">
+                  {stat.label}
+                </p>
+              </div>
+            ))}
           </div>
         </div>
       </section>
 
       {/* Call to Action */}
-      <section className="py-20 bg-white dark:bg-gray-900">
-        <div className="max-w-4xl mx-auto text-center px-4">
-          <div className="flex justify-center mb-6">
-            <div className="bg-gradient-to-br from-primary-500 to-accent-500 p-4 rounded-full">
-              <Rocket className="w-12 h-12 text-white" />
+      <section className="relative py-24 overflow-hidden">
+        {/* Background Image */}
+        <div className="absolute inset-0">
+          <img
+            src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=1920&h=600&fit=crop"
+            alt="Delicious food"
+            className="w-full h-full object-cover"
+          />
+          <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/70 to-black/80" />
+        </div>
+
+        {/* Content */}
+        <div className="relative z-10 max-w-4xl mx-auto text-center px-4">
+          <div className="inline-flex items-center justify-center mb-8">
+            <div className="bg-gradient-to-br from-orange-500 to-red-600 p-5 rounded-full shadow-2xl animate-pulse">
+              <Rocket className="w-14 h-14 text-white" />
             </div>
           </div>
-          <h2 className="text-4xl font-bold text-gray-900 dark:text-white mb-6 font-display">
+          <h2 className="text-5xl font-bold text-white mb-6 font-display drop-shadow-2xl">
             Ready to Experience the Best?
           </h2>
-          <p className="text-xl text-gray-600 dark:text-gray-400 mb-8">
+          <p className="text-xl text-white/90 mb-10 max-w-2xl mx-auto drop-shadow-lg">
             Join thousands of happy customers who've made us their favorite burger spot
           </p>
-          <div className="flex flex-wrap gap-4 justify-center">
+          <div className="flex flex-wrap gap-6 justify-center">
             <Link
               to="/menu"
-              className="btn-primary text-lg px-12 py-4"
+              className="inline-flex items-center gap-3 bg-gradient-to-r from-orange-500 to-red-600 hover:from-orange-600 hover:to-red-700 text-white font-bold text-lg px-10 py-5 rounded-xl shadow-2xl hover:shadow-3xl transition-all duration-300 transform hover:scale-105"
             >
+              <Flame className="w-6 h-6" />
               Order Now
             </Link>
             <Link
               to="/orders"
-              className="btn-outline text-lg px-12 py-4"
+              className="inline-flex items-center gap-3 bg-white/10 backdrop-blur-md hover:bg-white/20 text-white font-bold text-lg px-10 py-5 rounded-xl border-2 border-white/30 transition-all duration-300 transform hover:scale-105"
             >
+              <Target className="w-6 h-6" />
               Track Your Order
             </Link>
           </div>
