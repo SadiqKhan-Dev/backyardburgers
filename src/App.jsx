@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { Toaster } from 'react-hot-toast';
+import './App.css';
 import Navbar from './components/Navbar';
 import CartDrawer from './components/CartDrawer';
 import Home from './pages/Home';
